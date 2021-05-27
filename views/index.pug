@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  .wrapper: .checkout.container: .content
+    header
+
+    form#payment-form(action="/transaction", method="post")
+      section
+        label(for="amount")
+          span.input-label Amount
+          .input-wrapper.amount-wrapper
+            input#amount(name="amount" type="tel" min="1" value="10")
+
+        .bt-drop-in-wrapper
+          #bt-dropin
+
+      input#nonce(type="hidden" name="payment_method_nonce")
+      button.button(type="submit")
+        span Submit
+
+  span(hidden id="client-token")=clientToken.createClientToken.clientToken
+
+  script(src="https://js.braintreegateway.com/web/dropin/1.21.0/js/dropin.min.js")
+  script(type="text/javascript", src="/javascripts/demo.js")
